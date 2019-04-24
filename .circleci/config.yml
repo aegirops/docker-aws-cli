@@ -30,14 +30,13 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build -t "aws-cli:latest" .
-            docker tag aws-cli:latest ${CIRCLE_TAG}
+            docker build -t "aegirops/aws-cli:latest" -t "aegirops/aws-cli:${CIRCLE_TAG}" .
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker push aws-cli:latest
-            docker push aws-cli:${CIRCLE_TAG}
+            docker push aegirops/aws-cli:latest
+            docker push aegirops/aws-cli:${CIRCLE_TAG}
 
 workflows:
   build-test:
