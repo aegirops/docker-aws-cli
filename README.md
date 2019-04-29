@@ -1,6 +1,6 @@
 # docker-aws-cli
 
-[![CircleCI](https://circleci.com/gh/JeremyMarjollet/docker-aws-cli/tree/master.svg?style=svg)](https://circleci.com/gh/JeremyMarjollet/docker-aws-cli/tree/master)
+[![CircleCI](https://circleci.com/gh/aegirops/docker-aws-cli.svg?style=svg)](https://circleci.com/gh/aegirops/docker-aws-cli)
 
 ## Description
 
