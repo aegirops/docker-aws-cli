@@ -9,7 +9,8 @@ RUN apt-get install -y \
     python3 \
     python3-pip \
     apt-transport-https \
-    gettext-base
+    gettext-base \
+    jq
 
 # Add docker
 RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" >> /etc/apt/sources.list \
