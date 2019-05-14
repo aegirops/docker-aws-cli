@@ -14,6 +14,7 @@ This image is based on debian stretch slim and contains:
  - Curl
  - Git
  - Docker cli
+ - Jq
 
 This image is intended to be used in a kubernetes/aws CI/CD environment.
 
