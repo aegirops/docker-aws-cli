@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build -t "aegirops/aws-cli:latest" -t "aegirops/aws-cli:${CIRCLE_TAG}" .
+            docker build -t "aegirops/aws-cli:latest" -t "aegirops/aws-cli:${CIRCLE_TAG}" . --no-cache
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
