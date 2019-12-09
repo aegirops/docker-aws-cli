@@ -17,7 +17,7 @@ RUN apt-get install -y \
 RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" >> /etc/apt/sources.list \
     && curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - \
     && apt-get update \
-    && apt-get install docker-ce-cli
+    && apt-get install docker-ce-cli docker-compose -y
 
 # Add new user ci and set sudo without password
 RUN adduser --disabled-password --gecos "" ci
