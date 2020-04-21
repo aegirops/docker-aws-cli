@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Build docker image serverless flavor
           command: |
-            docker build -f Dockerfile.serverless -t "aegirops/aws-cli:latest-serverlesss" -t "aegirops/aws-cli:${CIRCLE_TAG}-serverless" . --no-cache
+            docker build -f Dockerfile.serverless -t "aegirops/aws-cli:latest-serverless" -t "aegirops/aws-cli:${CIRCLE_TAG}-serverless" . --no-cache
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
