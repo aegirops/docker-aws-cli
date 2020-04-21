@@ -15,10 +15,23 @@ This image is based on debian stretch slim and contains:
  - Git
  - Docker cli
  - Jq
+ - YTT (Yaml templating tool)
 
 This image is intended to be used in a kubernetes/aws CI/CD environment.
 
- ## DockerHub
+## Flavors
+
+This build provides two flavors:
+
+- aegirops/aws-cli:VERSION
+
+Which include all tools from the `description`
+
+- aegirops/aws-cli:VERSION-serverless
+
+Which contains all tools from the `description` and serverless.com cli
+
+## DockerHub
 
 Available publicly on:
  - https://hub.docker.com/r/aegirops/aws-cli

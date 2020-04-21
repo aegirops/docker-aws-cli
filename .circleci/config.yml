@@ -14,7 +14,10 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build docker image
-          command: docker build -t aws-cli .
+          command: docker build -f Dockerfile -t aws-cli .
+      - run:
+          name: Build docker image serverless flavor
+          command: docker build -f Dockerfile.serverless -t aws-cli .
       - run:
           name: Check kubectl
           command:  docker run -it aws-cli "which" "kubectl"
@@ -30,13 +33,19 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build -t "aegirops/aws-cli:latest" -t "aegirops/aws-cli:${CIRCLE_TAG}" . --no-cache
+            docker build -f Dockerfile -t "aegirops/aws-cli:latest" -t "aegirops/aws-cli:${CIRCLE_TAG}" . --no-cache
+      - run:
+          name: Build docker image serverless flavor
+          command: |
+            docker build -f Dockerfile.serverless -t "aegirops/aws-cli:latest-serverlesss" -t "aegirops/aws-cli:${CIRCLE_TAG}-serverless" . --no-cache
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push aegirops/aws-cli:latest
             docker push aegirops/aws-cli:${CIRCLE_TAG}
+            docker push aegirops/aws-cli:latest-serverless
+            docker push aegirops/aws-cli:${CIRCLE_TAG}-serverless
 
 workflows:
   build-test:
