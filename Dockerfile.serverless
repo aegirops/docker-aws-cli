@@ -37,14 +37,14 @@ RUN curl -o /usr/local/bin/kubectl -LO https://storage.googleapis.com/kubernetes
 # Install ytt yaml templating tool
 RUN wget --quiet -O- https://k14s.io/install.sh | bash
 
-# Install serverless.com cli
-RUN curl -o- -L https://slss.io/install | bash
-
 # Cleanup
 RUN apt-get clean -y
 
-# Use ci user and run bash
-ENV PATH="$HOME/.serverless/bin:$PATH"
+# Use ci user
 USER ci
+
+# Install serverless.com cli
+RUN curl -o- -L https://slss.io/install | bash
+ENV PATH="$HOME/.serverless/bin:$PATH"
 
 CMD ["bash"]
