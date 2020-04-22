@@ -44,6 +44,7 @@ RUN curl -o- -L https://slss.io/install | bash
 RUN apt-get clean -y
 
 # Use ci user and run bash
+ENV PATH="$HOME/.serverless/bin:$PATH"
 USER ci
 
 CMD ["bash"]
