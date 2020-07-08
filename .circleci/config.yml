@@ -3,7 +3,7 @@ version: 2.1
 executors:
   buildpack:
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: circleci/buildpack-deps:buster
     working_directory: ~/repo
 
 jobs:

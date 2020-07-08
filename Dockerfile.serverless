@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 # Install dependencies
 RUN apt-get update
@@ -14,7 +14,7 @@ RUN apt-get install -y \
     jq
 
 # Add docker
-RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian stretch stable" >> /etc/apt/sources.list \
+RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian buster stable" >> /etc/apt/sources.list \
     && curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - \
     && apt-get update \
     && apt-get install docker-ce-cli docker-compose -y

@@ -6,7 +6,7 @@
 
 Docker with aws cli and kubectl for CI/CD purpose
 
-This image is based on debian stretch slim and contains:
+This image is based on debian buster slim and contains:
  - Python3
  - Pip3
  - Aws cli
