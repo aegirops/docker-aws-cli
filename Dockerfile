@@ -27,7 +27,7 @@ RUN echo "ci     ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN pip3 install awscli
 
 # Install aws-iam-authenticator to work with EKS
-RUN curl -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.15.10/2020-02-22/bin/linux/amd64/aws-iam-authenticator \
+RUN curl -o /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.9/2020-11-02/bin/linux/amd64/aws-iam-authenticator \
     && chmod +x /usr/local/bin/aws-iam-authenticator
 
 # Install kubectl from google official source

@@ -7,15 +7,16 @@
 Docker with aws cli and kubectl for CI/CD purpose
 
 This image is based on debian buster slim and contains:
- - Python3
- - Pip3
- - Aws cli
- - Kubectl
- - Curl
- - Git
- - Docker cli
- - Jq
- - YTT (Yaml templating tool)
+
+- Python3
+- Pip3
+- Aws cli
+- Kubectl
+- Curl
+- Git
+- Docker cli
+- Jq
+- YTT (Yaml templating tool https://get-ytt.io)
 
 This image is intended to be used in a kubernetes/aws CI/CD environment.
 
@@ -34,5 +35,5 @@ Which contains all tools from the `description` and serverless.com cli
 ## DockerHub
 
 Available publicly on:
- - https://hub.docker.com/r/aegirops/aws-cli
 
+- https://hub.docker.com/r/aegirops/aws-cli
