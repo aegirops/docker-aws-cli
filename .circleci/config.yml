@@ -20,10 +20,22 @@ jobs:
           command: docker build -f Dockerfile.serverless -t aws-cli .
       - run:
           name: Check kubectl
-          command:  docker run -it aws-cli "which" "kubectl"
+          command: docker run -it aws-cli "which" "kubectl"
       - run:
           name: Check aws
-          command:  docker run -it aws-cli "aws" "--version"    
+          command: docker run -it aws-cli "aws" "--version"
+      - run:
+          name: Check all versions
+          command: |
+            echo "[kubectl] "$(docker run -it aws-cli "kubectl"  "version" | head -n 1)
+            echo "[aws] "$(docker run -it aws-cli "aws"      "--version" | head -n 1)
+            echo "[pip3] "$(docker run -it aws-cli "pip3"     "--version" | head -n 1)
+            echo "[python3] "$(docker run -it aws-cli "python3"  "--version" | head -n 1)
+            echo "[curl] "$(docker run -it aws-cli "curl"     "--version" | head -n 1)
+            echo "[git] "$(docker run -it aws-cli "git"      "--version" | head -n 1)
+            echo "[docker] "$(docker run -it aws-cli "docker"   "--version" | head -n 1)
+            echo "[jq] "$(docker run -it aws-cli "jq"       "--version" | head -n 1)
+            echo "[ytt] "$(docker run -it aws-cli "ytt"      "--version" | head -n 1)
 
   publish-latest-docker-image:
     executor: buildpack
@@ -57,7 +69,7 @@ workflows:
                 - /.*/
 
   publish:
-    jobs:  
+    jobs:
       - publish-latest-docker-image:
           context: dockerAwsCli
           filters:
