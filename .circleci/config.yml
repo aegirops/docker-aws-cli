@@ -14,28 +14,27 @@ jobs:
       - setup_remote_docker
       - run:
           name: Build docker image
-          command: docker build -f Dockerfile -t aws-cli .
-      - run:
-          name: Build docker image serverless flavor
-          command: docker build -f Dockerfile.serverless -t aws-cli .
+          command: |
+            docker build -f Dockerfile --target aws-cli -t "aws-cli:latest" .
+            docker build -f Dockerfile --target aws-cli-serverless -t "aws-cli:latest-serverless" .
       - run:
           name: Check kubectl
-          command: docker run -it aws-cli "which" "kubectl"
+          command: docker run -it aws-cli:latest "which" "kubectl"
       - run:
           name: Check aws
-          command: docker run -it aws-cli "aws" "--version"
+          command: docker run -it aws-cli:latest "aws" "--version"
       - run:
           name: Check all versions
           command: |
-            echo "[kubectl] "$(docker run -it aws-cli "kubectl"  "version" | head -n 1)
-            echo "[aws] "$(docker run -it aws-cli "aws"      "--version" | head -n 1)
-            echo "[pip3] "$(docker run -it aws-cli "pip3"     "--version" | head -n 1)
-            echo "[python3] "$(docker run -it aws-cli "python3"  "--version" | head -n 1)
-            echo "[curl] "$(docker run -it aws-cli "curl"     "--version" | head -n 1)
-            echo "[git] "$(docker run -it aws-cli "git"      "--version" | head -n 1)
-            echo "[docker] "$(docker run -it aws-cli "docker"   "--version" | head -n 1)
-            echo "[jq] "$(docker run -it aws-cli "jq"       "--version" | head -n 1)
-            echo "[ytt] "$(docker run -it aws-cli "ytt"      "--version" | head -n 1)
+            echo "[kubectl] "$(docker run -it aws-cli:latest "kubectl"  "version" | head -n 1)
+            echo "[aws] "$(docker run -it aws-cli:latest "aws"      "--version" | head -n 1)
+            echo "[pip3] "$(docker run -it aws-cli:latest "pip3"     "--version" | head -n 1)
+            echo "[python3] "$(docker run -it aws-cli:latest "python3"  "--version" | head -n 1)
+            echo "[curl] "$(docker run -it aws-cli:latest "curl"     "--version" | head -n 1)
+            echo "[git] "$(docker run -it aws-cli:latest "git"      "--version" | head -n 1)
+            echo "[docker] "$(docker run -it aws-cli:latest "docker"   "--version" | head -n 1)
+            echo "[jq] "$(docker run -it aws-cli:latest "jq"       "--version" | head -n 1)
+            echo "[ytt] "$(docker run -it aws-cli:latest "ytt"      "--version" | head -n 1)
 
   publish-latest-docker-image:
     executor: buildpack
@@ -43,13 +42,10 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Build docker image
+          name: Build docker image and serverless flavor
           command: |
-            docker build -f Dockerfile -t "aegirops/aws-cli:latest" -t "aegirops/aws-cli:${CIRCLE_TAG}" . --no-cache
-      - run:
-          name: Build docker image serverless flavor
-          command: |
-            docker build -f Dockerfile.serverless -t "aegirops/aws-cli:latest-serverless" -t "aegirops/aws-cli:${CIRCLE_TAG}-serverless" . --no-cache
+            docker build -f Dockerfile --target aws-cli -t "aegirops/aws-cli:latest" -t "aegirops/aws-cli:${CIRCLE_TAG}" .
+            docker build -f Dockerfile --target aws-cli-serverless -t "aegirops/aws-cli:latest-serverless" -t "aegirops/aws-cli:${CIRCLE_TAG}-serverless" .
       - run:
           name: Publish Docker Image to Docker Hub
           command: |

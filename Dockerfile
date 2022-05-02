@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim AS aws-cli
 
 # Install dependencies
 RUN apt-get update
@@ -14,7 +14,7 @@ RUN apt-get install -y \
     jq
 
 # Add docker
-RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian buster stable" >> /etc/apt/sources.list \
+RUN echo "deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable" >> /etc/apt/sources.list \
     && curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - \
     && apt-get update \
     && apt-get install docker-ce-cli docker-compose -y
@@ -35,12 +35,21 @@ RUN curl -o /usr/local/bin/kubectl -LO https://storage.googleapis.com/kubernetes
     && chmod +x /usr/local/bin/kubectl
 
 # Install ytt yaml templating tool
-RUN wget --quiet -O- https://k14s.io/install.sh | bash
+RUN curl -o /usr/local/bin/ytt -LO https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.40.1/ytt-linux-amd64 \
+    && chmod +x /usr/local/bin/ytt
 
 # Cleanup
 RUN apt-get clean -y
 
 # Use ci user and run bash
 USER ci
+
+CMD ["bash"]
+
+FROM aws-cli AS aws-cli-serverless
+
+# Install serverless.com cli
+RUN curl -o- -L https://slss.io/install | bash
+ENV PATH="$HOME/.serverless/bin:$PATH"
 
 CMD ["bash"]
