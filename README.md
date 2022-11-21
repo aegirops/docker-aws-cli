@@ -8,18 +8,18 @@ Docker with aws cli and kubectl for CI/CD purpose
 
 This image is based on debian buster slim and contains:
 
-- Python 3.7
-- Pip3 18.1
-- Aws cli
-- s3cmd
-- Kubectl
+- Python 3.9
+- Pip3 20.3
+- Aws cli 1.27
+- s3cmd 2.3
+- Kubectl 1.25
 - Curl
 - Git
-- Docker cli
-- Jq
-- YTT v0.44.0 (Yaml templating tool https://get-ytt.io)
+- Docker cli 20.10
+- Jq 1.6
+- YTT v0.44.0 (Yaml templating tool https://github.com/vmware-tanzu/carvel-ytt)
 
-This image is intended to be used in a kubernetes/aws CI/CD environment.
+This image is intended to be used in an AWS, Kubernetes CI/CD environment.
 
 ## Flavors
 
