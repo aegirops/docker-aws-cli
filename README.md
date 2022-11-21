@@ -10,13 +10,14 @@ This image is based on debian buster slim and contains:
 
 - Python 3.7
 - Pip3 18.1
-- Aws cli 1.20
+- Aws cli
+- s3cmd
 - Kubectl
 - Curl
 - Git
 - Docker cli
 - Jq
-- YTT 0.30 (Yaml templating tool https://get-ytt.io)
+- YTT v0.44.0 (Yaml templating tool https://get-ytt.io)
 
 This image is intended to be used in a kubernetes/aws CI/CD environment.
 
@@ -37,4 +38,3 @@ Which contains all tools from the `description` and serverless.com cli
 Available publicly on:
 
 - https://hub.docker.com/r/aegirops/aws-cli
-
