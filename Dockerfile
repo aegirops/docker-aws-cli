@@ -36,8 +36,8 @@ RUN curl -o /usr/local/bin/kubectl -LO https://storage.googleapis.com/kubernetes
     chmod +x /usr/local/bin/kubectl
 
 # Install ytt yaml templating tool
-RUN curl -o /usr/local/bin/ytt -LO https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.44.0/ytt-linux-amd64 && \
-    chmod +x /usr/local/bin/ytt
+RUN curl -o /usr/local/bin/ytt -LO https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.45.3/ytt-linux-amd64 \
+    && chmod +x /usr/local/bin/ytt
 
 # Cleanup
 RUN apt-get clean -y

@@ -17,7 +17,7 @@ This image is based on debian buster slim and contains:
 - Git
 - Docker cli 20.10
 - Jq 1.6
-- YTT v0.44.0 (Yaml templating tool https://github.com/vmware-tanzu/carvel-ytt)
+- YTT v0.45.3 (Yaml templating tool https://github.com/vmware-tanzu/carvel-ytt)
 
 This image is intended to be used in an AWS, Kubernetes CI/CD environment.
 
